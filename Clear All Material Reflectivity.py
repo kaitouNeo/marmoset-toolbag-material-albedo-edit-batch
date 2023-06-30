@@ -1,21 +1,21 @@
-﻿# Marmoset Toolbag 4 全部材质的Reflectivity通道批量改成0
-# 导入 Marmoset 的程序库
+﻿# Quick turn the reflectivity of all materials into zero in Marmoset Toolbag 4.
+# Import the libraries of Marmoset Toolbag.
 import mset
 
-# 获取所有的材质
+# Get all of materials.
 sceneMaterials = mset.getAllMaterials()
 
-# 遍历所有的材质
+# Iterate all of the materials.
 for material in sceneMaterials:
-    # 获取 reflectivity 通道的类型名称
+    # Get a field name of the material, the field name is reflectivity.
     materialFieldNames = material.reflectivity.getFieldNames()
-    # 如果 reflectivity 通道的类型名称是 "Specular Map" 的类型
+    # If the field name is type of "Specular Map".
     if "Specular Map" in materialFieldNames:
             material.reflectivity.setField("Intensity", 0)
             material.reflectivity.setField("Color", [1, 1, 1])
             material.reflectivity.setField("Fresnel", 0)
             material.reflectivity.setField("Color;fresnel", [1, 1, 1])
-    # 如果 reflectivity 通道的类型名称是 "Metalness Map" 的类型
+    # If the field name is type of "Metalness Map".
     if "Metalness Map" in materialFieldNames:
             material.reflectivity.setField("Metalness", 0)
     else:
