@@ -1,17 +1,17 @@
-# Marmoset Toolbag 4 全部材质的Albedo通道批量改成白色
-# 导入 Marmoset 的程序库
+# Quick turn the albedo of all materials into pure white in Marmoset Toolbag 4.
+# Import the libraries of Marmoset Toolbag.
 import mset
 
-# 获取所有的材质
+# Get all of materials.
 sceneMaterials = mset.getAllMaterials()
 
-# 遍历所有的材质，然后把颜色改成白色
+# Iterate all of the materials.
 for material in sceneMaterials:
-    # 获取 albedo 通道的类型名称
+    # Get a field name of the material, the field name is albedo.
     materialFieldNames = material.albedo.getFieldNames()
-     # 如果 albedo 通道的类型名称是 "albedo" 的类型(而不是vertext color类型)
+     # If the field name is type of "Albedo" rather than the type of "vertext color". 
     if "Albedo Map" in materialFieldNames:
-        # 把"albedo"的数值改成白色
+        # Turn the value of albedo into pure white (RGB = 1,1,1).
         material.albedo.setField("Color", [1, 1, 1])
     else:
         continue
