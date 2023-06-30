@@ -1,21 +1,21 @@
-# Marmoset Toolbag 4 全部材质的Microsurface通道批量改成完全粗糙
-# 导入 Marmoset 的程序库
+# Quick turn the roughness of all materials into most rough in Marmoset Toolbag 4.
+# Import the libraries of Marmoset Toolbag.
 import mset
 
-# 获取所有的材质
+# Get all of materials.
 sceneMaterials = mset.getAllMaterials()
 
-# 遍历所有的材质
+# Iterate all of the materials.
 for material in sceneMaterials:
-    # 获取microsurface通道的类型名称
+    # Get a field name of the material, the field name is microsurface.
    materialFieldNames = material.microsurface.getFieldNames()
-   # 如果microsurface通道的类型名称是 "Gloss" 的类型
+   # If the field name is type of "Gloss".
    if "Gloss" in materialFieldNames:
-    # 把"Gloss"的数值改成0
+    # Turn the value of gloss into 0.
     material.microsurface.setField("Gloss", 0)
-   # 如果microsurface通道的类型名称是 "Roughness" 的类型
+   # If the field name is type of "Roughness"(PBR metalness workflow).
    if "Roughness" in materialFieldNames:
-    # 把 "Roughness" 的数值改成1，这个刚好和"Gloss"相反的
+    # Turn the value of roughness into 1,  it is reverse to the value of gloss.
     material.microsurface.setField("Roughness", 1)
    if "Microsurface Map" in materialFieldNames:
     material.microsurface.setField("Mode", 0)
